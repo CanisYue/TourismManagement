@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ManagerController">
+   <children>
+      <TabPane layoutX="14.0" prefHeight="600.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="pathPad" text="添加/删除路">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="957.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="260.0" layoutY="87.0" prefHeight="98.0" prefWidth="296.0">
+                           <children>
+                              <Label fx:id="lbTest" text="请选择起点和终点并输入距离" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="756.0" layoutY="152.0" prefHeight="110.0" prefWidth="244.0">
+                           <children>
+                              <Button fx:id="btnAddPath" mnemonicParsing="false" onAction="#handlePath" text="添加" />
+                              <Button fx:id="btnDeletePath" mnemonicParsing="false" onAction="#handlePath" text="删除">
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="listStart" layoutX="61.0" layoutY="214.0" onMouseClicked="#handleMPath" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="listDest" layoutX="308.0" layoutY="214.0" onMouseClicked="#handleMPath" prefHeight="200.0" prefWidth="200.0" />
+                        <TextField fx:id="txtMStart" editable="false" layoutX="62.0" layoutY="178.0" onAction="#handlePath" prefHeight="34.0" prefWidth="198.0" promptText="请选择起点" />
+                        <TextField fx:id="txtMEnd" editable="false" layoutX="307.0" layoutY="178.0" onAction="#handlePath" prefHeight="36.0" prefWidth="202.0" promptText="请选择终点" />
+                        <TextField fx:id="txtDistance" layoutX="539.0" layoutY="189.0" prefHeight="30.0" prefWidth="166.0" promptText="请输入距离" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="spotPad" onSelectionChanged="#handleSpot" text="添加/删除景点">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="listSpot" layoutX="135.0" layoutY="66.0" onMouseClicked="#handleMSpot" prefHeight="351.0" prefWidth="218.0" />
+                        <VBox layoutX="430.0" layoutY="66.0" prefHeight="392.0" prefWidth="172.0">
+                           <children>
+                              <Label prefHeight="40.0" text="景点名" />
+                              <Label prefHeight="40.0" text="欢迎度">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label prefHeight="40.0" text="是否有休息室">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label prefHeight="40.0" text="是否有洗手间">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label prefHeight="40.0" text="简介">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnRemoveSpt" layoutX="602.0" layoutY="473.0" mnemonicParsing="false" onAction="#removeSpot" text="删除景点" />
+                        <Button fx:id="btnAddSpt" layoutX="739.0" layoutY="473.0" mnemonicParsing="false" onAction="#addSpot" text="添加景点" />
+                        <Group layoutX="31.0" layoutY="-1.0">
+                           <children>
+                              <RadioButton fx:id="radioRemove" layoutX="244.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleMode" onMouseClicked="#handleMode" text="删除模式" />
+                              <RadioButton fx:id="radioAdd" layoutX="104.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleMode" onMouseClicked="#handleMode" text="添加模式" />
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <RadioButton fx:id="rdioRestY" layoutX="592.0" layoutY="196.0" mnemonicParsing="false" selected="true" text="是" />
+                              <RadioButton fx:id="rdioRestN" layoutX="717.0" layoutY="196.0" mnemonicParsing="false" text="否" />
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <RadioButton fx:id="rdioTolY" layoutX="592.0" layoutY="254.0" mnemonicParsing="false" selected="true" text="是" />
+                              <RadioButton fx:id="rdioTolN" layoutX="717.0" layoutY="254.0" mnemonicParsing="false" text="否" />
+                           </children>
+                        </Group>
+                        <TextField fx:id="txtPop" layoutX="592.0" layoutY="135.0" promptText="请输入欢迎度(数字）" />
+                        <TextField fx:id="txtName" layoutX="592.0" layoutY="72.0" promptText="请输入景点名" />
+                        <TextArea fx:id="txtIntro" layoutX="589.0" layoutY="295.0" prefHeight="136.0" prefWidth="249.0" promptText="请输入简介" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="发布通知">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="txtBroadcast" layoutX="225.0" layoutY="126.0" prefHeight="223.0" prefWidth="434.0" />
+                        <Label layoutX="225.0" layoutY="63.0" prefHeight="53.0" prefWidth="240.0" text="请输入需要发布的通知" />
+                        <Button fx:id="btnBroadcast" layoutX="599.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleBroadcast" text="发布" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="logOut" onSelectionChanged="#logOut" text="退出登录">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

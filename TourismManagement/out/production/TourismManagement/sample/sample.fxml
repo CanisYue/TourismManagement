@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="978.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <AnchorPane maxHeight="570.0" maxWidth="960.0" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="960.0" StackPane.alignment="CENTER">
+         <children>
+            <TabPane layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="569.0" prefWidth="801.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="景点查找">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" layoutX="225.0" layoutY="110.0" prefHeight="98.0" prefWidth="435.0">
+                                 <children>
+                                    <TextField fx:id="txtSpot" promptText="请输入关键字以查找" />
+                                    <Button fx:id="btnSpotFind" mnemonicParsing="false" onAction="#handleSpot" text="查询" />
+                                 </children>
+                              </HBox>
+                              <ScrollPane layoutX="228.0" layoutY="228.0" prefHeight="180.0" prefWidth="346.0">
+                                 <content>
+                                    <VBox fx:id="vSpot" prefHeight="181.0" prefWidth="341.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="景点排序">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutY="-2.0" prefHeight="524.0" prefWidth="834.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane layoutX="47.0" layoutY="217.0" prefHeight="246.0" prefWidth="688.0">
+                                       <content>
+                                          <VBox fx:id="vSort" prefHeight="244.0" prefWidth="686.0" />
+                                       </content>
+                                    </ScrollPane>
+                                    <HBox alignment="CENTER" layoutX="47.0" layoutY="98.0" prefHeight="112.0" prefWidth="643.0">
+                                       <children>
+                                          <Button fx:id="btnSortWelcome" mnemonicParsing="false" onAction="#handleSort" text="按欢迎度搜索" />
+                                          <Button fx:id="btnSortPath" mnemonicParsing="false" onAction="#handleSort" text="按岔路数搜索">
+                                             <HBox.margin>
+                                                <Insets left="60.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="景点路径">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" layoutX="86.0" layoutY="123.0" prefHeight="128.0" prefWidth="552.0">
+                                 <children>
+                                    <TextField fx:id="txtStart" promptText="请输入起始点" />
+                                    <TextField fx:id="txtDest" promptText="请输入终点" />
+                                    <Button fx:id="btnPathSearch" mnemonicParsing="false" onAction="#handlePath" text="查询" />
+                                 </children>
+                              </HBox>
+                              <ScrollPane layoutX="78.0" layoutY="244.0" prefHeight="250.0" prefWidth="553.0">
+                                 <content>
+                                    <TextArea fx:id="txtPath" prefHeight="251.0" prefWidth="554.0" />
+                                 </content>
+                              </ScrollPane>
+                              <TextField fx:id="txtDistance" layoutX="638.0" layoutY="244.0" prefHeight="27.0" prefWidth="141.0" />
+                              <Label layoutX="638.0" layoutY="200.0" prefHeight="39.0" prefWidth="75.0" text="最短距离" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="导游图">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView fx:id="list" layoutX="119.0" layoutY="104.0" prefHeight="200.0" prefWidth="200.0" />
+                              <Button fx:id="btnConfirm" layoutX="279.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleConfirm" text="确定" />
+                              <Label layoutX="119.0" layoutY="72.0" prefHeight="25.0" prefWidth="167.0" text="请依次选择起点和终点" />
+                              <VBox layoutX="435.0" layoutY="97.0" prefHeight="137.0" prefWidth="150.0">
+                                 <children>
+                                    <Label prefHeight="31.0" prefWidth="51.0" text="起点">
+                                       <font>
+                                          <Font size="31.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtBegin" editable="false" />
+                                    <Label text="终点" />
+                                    <TextField fx:id="txtEnd" editable="false" />
+                                 </children>
+                              </VBox>
+                              <Button fx:id="btnSearchGuide" layoutX="537.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleConfirm" text="查找" />
+                              <ScrollPane layoutX="69.0" layoutY="362.0" prefHeight="130.0" prefWidth="663.0">
+                                 <content>
+                                    <TextArea fx:id="txtGuide" prefHeight="127.0" prefWidth="648.0" />
+                                 </content>
+                              </ScrollPane>
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabAdmin" text="管理员">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Pane fx:id="pnlAdmin" layoutX="10.0" layoutY="5.0" prefHeight="491.0" prefWidth="811.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" layoutX="150.0" layoutY="180.0" prefHeight="171.0" prefWidth="505.0">
+                                       <children>
+                                          <TextField fx:id="txtAdmin" prefHeight="52.0" prefWidth="211.0" promptText="请输入用户名" />
+                                          <TextField fx:id="txtPassword" prefHeight="53.0" prefWidth="219.0" promptText="请输入密码">
+                                             <HBox.margin>
+                                                <Insets left="30.0" />
+                                             </HBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="309.0" layoutY="112.0" prefHeight="46.0" prefWidth="167.0" text="请输入用户名和密码" />
+                                    <Button fx:id="btnLogIn" layoutX="554.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleLogIn" prefHeight="55.0" prefWidth="129.0" text="登入" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabDis" onSelectionChanged="#handleDis" text="景点分布图">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane layoutX="22.0" layoutY="14.0" prefHeight="429.0" prefWidth="665.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="422.0" prefWidth="661.0">
+                                       <children>
+                                          <TextArea fx:id="txtTable" layoutX="14.0" layoutY="6.0" prefHeight="486.0" prefWidth="766.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="停车场系统">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" layoutX="162.0" layoutY="181.0" prefHeight="150.0" prefWidth="564.0">
+                                 <children>
+                                    <TextField fx:id="txtID" promptText="请输入车牌号" />
+                                    <Button fx:id="btnEnter" mnemonicParsing="false" onAction="#handleGarage" text="进入停车场" />
+                                    <Button fx:id="btnLeave" mnemonicParsing="false" onAction="#handleGarage" prefHeight="29.0" prefWidth="90.0" text="离开停车场" />
+                                 </children>
+                              </HBox>
+                              <VBox fx:id="vGarage" layoutX="162.0" layoutY="353.0" prefHeight="205.0" prefWidth="520.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabLogOut" onSelectionChanged="#logout" text="保存">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+            <ScrollPane layoutX="802.0" layoutY="61.0" prefHeight="509.0" prefWidth="160.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="158.0">
+                     <children>
+                        <VBox fx:id="vBroadcast" layoutX="1.0" layoutY="1.0" prefHeight="569.0" prefWidth="158.0" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <Label layoutX="802.0" layoutY="21.0" prefHeight="39.0" prefWidth="141.0" text="通知" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
